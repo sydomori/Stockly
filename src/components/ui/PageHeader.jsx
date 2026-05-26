@@ -6,7 +6,8 @@ import DownloadIcon from '@mui/icons-material/Download'
 import Stack from '@mui/material/Stack'
 import "../../App.css"
 
-export default function PageHeader(){
+
+export default function PageHeader({filterOpen, setFilterOpen}){
     return(
         <Box sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3, position: 'relative', top: '80px'}}>
             <Stack spacing={0.5}>
@@ -18,9 +19,9 @@ export default function PageHeader(){
                 </Typography>
             </Stack>
             <Box sx={{display: 'flex', gap: 2}}>
-                <Button startIcon={<FilterListIcon />} variant="outlined" sx={{color: 'var(--text-primary)', border: '2px solid var(--border)'}}>Filter</Button>
-                <Button startIcon={<DownloadIcon />} variant="outlined" sx={{color: 'var(--text-primary)', border: '2px solid var(--border)'}}>Export</Button>
+                <Button startIcon={<FilterListIcon />} variant="text" sx={{color: 'var(--text-primary)'}} onClick={() => setFilterOpen(!filterOpen)}>Filter</Button>
+                <Button startIcon={<DownloadIcon />} variant="text" sx={{color: 'var(--text-primary)'}}>Export</Button>
             </Box>
-        </Box>
+        </Box>          
     )
 }
