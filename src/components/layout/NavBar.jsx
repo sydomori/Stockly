@@ -19,7 +19,7 @@ export default function NavBar(){
     ]
 
     return (
-        <AppBar position="fixed" sx={{bgcolor:'var(--background)'}}>   
+        <AppBar position="fixed" sx={{bgcolor:'var(--background)',borderBottom: '2px solid var(--border)'}}>   
             <ToolBar sx={{display: 'flex', justifyContent: 'space-between'}}>
              <Typography variant="h6" fontWeight="bold" sx={{display: 'flex', alignItems: 'center', gap: 1}}>
                 <img src={logo} alt="Stockly" style={{height: 40, borderRadius: '30%'}} />
