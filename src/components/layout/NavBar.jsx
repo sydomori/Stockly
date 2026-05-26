@@ -7,7 +7,15 @@ import SearchIcon from '@mui/icons-material/Search'
 import Input from '@mui/material/Input'
 import logo from '../../assets/logo.svg'
 import '../../App.css'
+import { useNavigate } from 'react-router-dom'
 export default function NavBar(){
+
+    const navigate = useNavigate()
+    const navLinks = [
+        {name: 'Dashboard', path: '/'},
+        {name: 'Products', path: '/products'}
+    ]
+
     return (
         <AppBar position="fixed" sx={{bgcolor:'var(--background)'}}>   
             <ToolBar sx={{display: 'flex', justifyContent: 'space-between'}}>
@@ -16,8 +24,22 @@ export default function NavBar(){
                 Stockly
              </Typography>
              <Box sx={{display: 'flex', gap: 4, ml: 4}}>
-                <Button  color="inherit">Dashboard</Button>
-                <Button color="inherit">Products</Button>
+                {navLinks.map((link) => (
+                    <Button 
+                     key={link.name} 
+                     color="inherit" 
+                     onClick={() => navigate(link.path)}
+                     sx={{borderBottom: location.pathname === link.path ? '2px solid white' : 'none',
+                        borderRadius: 1, transition: 'border 0.5s ease',
+                        '&:hover': {
+                            borderBottom: '2px solid white',
+                            borderRadius: 1,
+                            bgcolor: 'transparent'
+                        }
+                     }}>
+                        {link.name}
+                    </Button>
+                ))}
              </Box>
              <Box sx={{display: 'flex', alignItems: 'center',bgcolor:'var(--card-surface)', borderRadius: 1, px: 1, py: 0.5, width: '400px'}}>
                 <SearchIcon sx={{color:'var(--muted-text)',mr:2}} />
