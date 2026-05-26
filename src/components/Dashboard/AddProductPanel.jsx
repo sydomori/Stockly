@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 
-export default function AddProductPanel() {
+export default function AddProductPanel({onCancel}) {
     const inputStyles = {
         '& .MuiOutlinedInput-root': {
             bgcolor: 'var(--background)',
@@ -19,7 +19,7 @@ export default function AddProductPanel() {
         '& .MuiOutlinedInput-input': { color: 'var(--muted-text)' },
     };
     return (
-       <Box sx={{color:'var(--text-primary)',bgcolor:'var(--card-surface)',p:3, mt:10, borderRadius:2}} component="form">
+       <Box sx={{color:'var(--text-primary)',bgcolor:'var(--card-surface)',p:3, mt:15, borderRadius:2}} component="form">
            <Stack direction="column" spacing={2}>
                 <Stack>
                     <Typography variant='h5' mb={2}>Add Product</Typography>
@@ -32,7 +32,7 @@ export default function AddProductPanel() {
                     <TextField name='image' sx={inputStyles} label="Image URL" fullWidth size="small" placeholder='https://...' />
                 </Stack>
                 <Stack sx={{display:'flex', justifyContent:'flex-end'}} direction="row" spacing={2}>
-                    <Button sx={{width:'100px',color:'var(--text-primary)', '&:hover':{bgcolor:'var(--background)'}}}>Cancel</Button>
+                    <Button onClick={onCancel} sx={{width:'100px',color:'var(--text-primary)', '&:hover':{bgcolor:'var(--background)'}}}>Cancel</Button>
                     <Button sx={{width:'200px', bgcolor:'var(--primary-action)',color:'var(--background)'}} variant="contained">Add</Button>
                 </Stack>
             </Stack>

@@ -18,7 +18,7 @@ export default function Dashboard() {
             <NavBar />
             <Container>
                 <PageHeader isAddingProduct={isAddingProduct} onToggleAdd={()=> setIsAddingProduct(!isAddingProduct)} filterOpen={open} setFilterOpen={setOpen} />
-                <Collapse in={open} sx={{mt: 6.5, ml:73}}>
+                <Collapse in={open} sx={{mt: -5.0, ml:100}}>
                     <Box sx={{display: 'flex', gap: 2, mt: 2, p: 2, bgcolor: 'var(--primary-action)', borderRadius: 1, width: '300px'}}>
                             <Select size="small" defaultValue="all" sx={{width: '200px'}}>
                                 <MenuItem value="all">All</MenuItem>
@@ -37,7 +37,9 @@ export default function Dashboard() {
                             </Select>
                     </Box>
                 </Collapse>
-                <AddProductPanel onCancel={() => setIsAddingProduct(false)} />
+                <Collapse in={isAddingProduct}>
+                    <AddProductPanel onCancel={() => setIsAddingProduct(false)} />
+                </Collapse>
             </Container>
             
         </>
