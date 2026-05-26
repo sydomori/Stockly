@@ -19,8 +19,8 @@ export default function PageHeader({filterOpen, setFilterOpen}){
                 </Typography>
             </Stack>
             <Box sx={{display: 'flex', gap: 2}}>
-                <Button startIcon={<FilterListIcon />} variant="text" sx={{color: 'var(--text-primary)'}} onClick={() => setFilterOpen(!filterOpen)}>Filter</Button>
-                <Button startIcon={<DownloadIcon />} variant="text" sx={{color: 'var(--text-primary)'}}>Export</Button>
+                <Button startIcon={<FilterListIcon />} variant="text" sx={{color: 'var(--text-primary)', '&:hover': {bgcolor: 'var(--primary-action)',color:'var(--background)'}}} onClick={() => setFilterOpen(!filterOpen)}>Filter</Button>
+                <Button startIcon={<DownloadIcon />} variant="text" sx={{color: 'var(--text-primary)', '&:hover': {bgcolor: 'var(--primary-action)',color:'var(--background)'}}}>Export</Button>
             </Box>
         </Box>          
     )
