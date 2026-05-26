@@ -8,6 +8,8 @@ import Input from '@mui/material/Input'
 import logo from '../../assets/logo.svg'
 import '../../App.css'
 import { useNavigate } from 'react-router-dom'
+import dashboardLogo from '../../assets/dashboard-logo.svg'
+import productsLogo from '../../assets/products-logo.svg'
 export default function NavBar(){
 
     const navigate = useNavigate()
@@ -25,25 +27,44 @@ export default function NavBar(){
              </Typography>
              <Box sx={{display: 'flex', gap: 4, ml: 4}}>
                 {navLinks.map((link) => (
+                    link.name === 'Dashboard' ? (
                     <Button 
                      key={link.name} 
                      color="inherit" 
                      onClick={() => navigate(link.path)}
-                     sx={{borderBottom: location.pathname === link.path ? '2px solid white' : 'none',
-                        borderRadius: 1, transition: 'border 0.5s ease',
+                     sx={{borderBottom: location.pathname === link.path ? '2px solid white' : '2px solid transparent',
+                        borderRadius: 1, transition: 'border-color 0.4s ease-in-out',
                         '&:hover': {
                             borderBottom: '2px solid white',
                             borderRadius: 1,
                             bgcolor: 'transparent'
                         }
                      }}>
+                        <img src={dashboardLogo} alt="Dashboard" style={{height: 20}} />
                         {link.name}
                     </Button>
+                    ) : (
+                    <Button 
+                     key={link.name} 
+                     color="inherit" 
+                     onClick={() => navigate(link.path)}
+                     sx={{borderBottom: location.pathname === link.path ? '2px solid white' : '2px solid transparent',
+                        borderRadius: 1, transition: 'border-color 0.4s ease-in-out',
+                        '&:hover': {
+                            borderBottom: '2px solid white',
+                            borderRadius: 1,
+                            bgcolor: 'transparent'
+                        }
+                     }}>
+                        <img src={productsLogo} alt="Products" style={{height: 20}} />
+                        {link.name}
+                    </Button>
+                    )
                 ))}
              </Box>
              <Box sx={{display: 'flex', alignItems: 'center',bgcolor:'var(--card-surface)', borderRadius: 1, px: 1, py: 0.5, width: '400px'}}>
                 <SearchIcon sx={{color:'var(--muted-text)',mr:2}} />
-                <Input fullWidth disableUnderline placeholder="Search..." sx={{color:'var(--muted-text)'}} />
+                <Input  fullWidth disableUnderline placeholder="Search..." sx={{color:'var(--muted-text)'}} />
              </Box>
            </ToolBar>
         </AppBar>
