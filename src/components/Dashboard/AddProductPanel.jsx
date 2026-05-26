@@ -4,8 +4,9 @@ import '../../App.css'
 import TextField from '@mui/material/TextField'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
+import { useState } from 'react'
 
-export default function AddProductPanel({onCancel}) {
+export default function AddProductPanel({onCancel, onAddProduct}) {
     const inputStyles = {
         '& .MuiOutlinedInput-root': {
             bgcolor: 'var(--background)',
@@ -18,22 +19,41 @@ export default function AddProductPanel({onCancel}) {
         '& .MuiInputLabel-root.Mui-focused': { color: 'var(--primary-action)' },
         '& .MuiOutlinedInput-input': { color: 'var(--muted-text)' },
     };
+    const [productName, setProductName] = useState('');
+    const [productPrice, setProductPrice] = useState('');
+    const [productCategory, setProductCategory] = useState('');
+    const [productImage, setProductImage] = useState('');
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        const newProduct = {
+            name: productName,
+            price: productPrice,
+            category: productCategory,
+            image: productImage
+        };
+        onAddProduct(newProduct);
+        setProductName('');
+        setProductPrice('');
+        setProductCategory('');
+        setProductImage('');
+    }
     return (
-       <Box sx={{color:'var(--text-primary)',bgcolor:'var(--card-surface)',p:3, mt:15, borderRadius:2}} component="form">
+       <Box sx={{color:'var(--text-primary)',bgcolor:'var(--card-surface)',p:3, mt:15, borderRadius:2}} component="form" onSubmit={handleSubmit}>
            <Stack direction="column" spacing={2}>
                 <Stack>
                     <Typography variant='h5' mb={2}>Add Product</Typography>
                     <Typography sx={{color:'var(--muted-text)'}} variant='body2' mb={2}>Fill in the product details to add a new item to your inventory.</Typography>
                 </Stack>
                 <Stack direction="row" spacing={2}>
-                    <TextField name="name" sx={inputStyles} label="Product Name" fullWidth size="small" placeholder='e.g JBL Headphones' />
-                    <TextField name="price" sx={inputStyles} label="Price (KES)" fullWidth size="small" placeholder='2000' />
-                    <TextField name="category" sx={inputStyles} label="Category" fullWidth size="small" placeholder='e.g Electronics' />
-                    <TextField name='image' sx={inputStyles} label="Image URL" fullWidth size="small" placeholder='https://...' />
+                    <TextField name="name" sx={inputStyles} label="Product Name" fullWidth size="small" placeholder='e.g JBL Headphones' value={productName} onChange={(e) => setProductName(e.target.value)} />
+                    <TextField name="price" sx={inputStyles} label="Price (KES)" fullWidth size="small" placeholder='2000' value={productPrice} onChange={(e) => setProductPrice(e.target.value)} />
+                    <TextField name="category" sx={inputStyles} label="Category" fullWidth size="small" placeholder='e.g Electronics' value={productCategory} onChange={(e) => setProductCategory(e.target.value)} />
+                    <TextField name='image' sx={inputStyles} label="Image URL" fullWidth size="small" placeholder='https://...' value={productImage} onChange={(e) => setProductImage(e.target.value)} />
                 </Stack>
                 <Stack sx={{display:'flex', justifyContent:'flex-end'}} direction="row" spacing={2}>
                     <Button onClick={onCancel} sx={{width:'100px',color:'var(--text-primary)', '&:hover':{bgcolor:'var(--background)'}}}>Cancel</Button>
-                    <Button sx={{width:'200px', bgcolor:'var(--primary-action)',color:'var(--background)'}} variant="contained">Add</Button>
+                    <Button type="submit" sx={{width:'200px', bgcolor:'var(--primary-action)',color:'var(--background)'}} variant="contained">Add</Button>
                 </Stack>
             </Stack>
        </Box>
