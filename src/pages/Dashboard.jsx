@@ -7,6 +7,7 @@ import Collapse from '@mui/material/Collapse'
 import Box from '@mui/material/Box'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
+import AddProductPanel from '../components/Dashboard/AddProductPanel'
 
 export default function Dashboard() {
     const [open, setOpen] = useState(false)
@@ -33,6 +34,7 @@ export default function Dashboard() {
                         </Select>
                 </Box>
             </Collapse>
+            <AddProductPanel />
         </Container>
     )
 }
