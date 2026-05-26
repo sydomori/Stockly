@@ -1,0 +1,184 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Marshall Major III",
+      "price": 12999,
+      "category": "audio",
+      "stock": "in_stock",
+      "rating": 4.8,
+      "image": "https://images.unsplash.com/photo-1669503239624-e68d6be09ce6?w=400&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": 2,
+      "name": "JBL Flip 6",
+      "price": 8999,
+      "category": "audio",
+      "stock": "low_stock",
+      "rating": 4.5,
+      "image": "https://images.unsplash.com/photo-1561930661-20c9650e3e25?w=400&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": 3,
+      "name": "Sony WH-1000XM5",
+      "price": 24999,
+      "category": "audio",
+      "stock": "in_stock",
+      "rating": 4.9,
+      "image": "https://images.unsplash.com/photo-1621208587196-0b2a7d2aeb03?w=400&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": 4,
+      "name": "Bose QuietComfort 45",
+      "price": 19999,
+      "category": "audio",
+      "stock": "out_of_stock",
+      "rating": 4.7,
+      "image": "https://images.unsplash.com/photo-1627560004323-86d6e0ac8cc7?w=400&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": 5,
+      "name": "Atlas Runner Pro",
+      "price": 11499,
+      "category": "footwear",
+      "stock": "low_stock",
+      "rating": 4.6,
+      "image": "https://images.unsplash.com/photo-1562183241-b937e95585b6?w=400&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": 6,
+      "name": "Nike Air Max 270",
+      "price": 13999,
+      "category": "footwear",
+      "stock": "in_stock",
+      "rating": 4.5,
+      "image": "https://images.unsplash.com/photo-1562613521-6b5293e5b0ea?w=400&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": 7,
+      "name": "Adidas Ultraboost 22",
+      "price": 15999,
+      "category": "footwear",
+      "stock": "in_stock",
+      "rating": 4.7,
+      "image": "https://images.unsplash.com/photo-1691067951700-138ca8f4841f?w=400&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": 8,
+      "name": "New Balance 574",
+      "price": 9499,
+      "category": "footwear",
+      "stock": "out_of_stock",
+      "rating": 4.3,
+      "image": "https://images.unsplash.com/photo-1539185441755-769473a23570?w=400&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": 9,
+      "name": "Pulse Watch S5",
+      "price": 21999,
+      "category": "wearables",
+      "stock": "in_stock",
+      "rating": 4.9,
+      "image": "https://images.unsplash.com/photo-1528837214451-5c143900b3a6?w=400&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": 10,
+      "name": "Fitbit Charge 5",
+      "price": 14999,
+      "category": "wearables",
+      "stock": "in_stock",
+      "rating": 4.4,
+      "image": "https://images.unsplash.com/photo-1557045136-50ed3874553c?w=400&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": 11,
+      "name": "Apple Watch SE",
+      "price": 29999,
+      "category": "wearables",
+      "stock": "low_stock",
+      "rating": 4.8,
+      "image": "https://images.unsplash.com/photo-1624096104992-9b4fa3a279dd?w=400&auto=format&fit=crop&q=80"
+    },
+    {
+      "id": 12,
+      "name": "Garmin Forerunner 55",
+      "price": 17999,
+      "category": "wearables",
+      "stock": "in_stock",
+      "rating": 4.6,
+      "image": "https://images.unsplash.com/photo-1678025946504-b6120c90da6b?w=400&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": 13,
+      "name": "Sony Alpha A6400",
+      "price": 89999,
+      "category": "cameras",
+      "stock": "in_stock",
+      "rating": 4.7,
+      "image": "https://images.unsplash.com/photo-1692030179940-c65af6a0e6b0?w=400&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": 14,
+      "name": "Canon EOS M50 Mark II",
+      "price": 67999,
+      "category": "cameras",
+      "stock": "low_stock",
+      "rating": 4.6,
+      "image": "https://images.unsplash.com/photo-1495707902641-75cac588d2e9?w=400&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": 15,
+      "name": "Fujifilm X-T30 II",
+      "price": 74999,
+      "category": "cameras",
+      "stock": "in_stock",
+      "rating": 4.8,
+      "image": "https://images.unsplash.com/photo-1709658663350-f92fc4cf9310?w=400&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": 16,
+      "name": "GoPro Hero 11",
+      "price": 39999,
+      "category": "cameras",
+      "stock": "out_of_stock",
+      "rating": 4.5,
+      "image": "https://images.unsplash.com/photo-1577486092192-59ded63a8dbd?w=400&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": 17,
+      "name": "Logitech MX Master 3",
+      "price": 7999,
+      "category": "accessories",
+      "stock": "in_stock",
+      "rating": 4.9,
+      "image": "https://images.unsplash.com/photo-1722682811175-5df0b444d659?w=400&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": 18,
+      "name": "Keychron K2 Keyboard",
+      "price": 11999,
+      "category": "accessories",
+      "stock": "in_stock",
+      "rating": 4.7,
+      "image": "https://images.unsplash.com/photo-1589578228447-e1a4e481c6c8?w=400&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": 19,
+      "name": "Anker PowerCore 26800",
+      "price": 4999,
+      "category": "accessories",
+      "stock": "low_stock",
+      "rating": 4.6,
+      "image": "https://images.unsplash.com/photo-1632156752398-2b2cb4e6c907?w=400&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": 20,
+      "name": "Belkin USB-C Hub",
+      "price": 5999,
+      "category": "accessories",
+      "stock": "in_stock",
+      "rating": 4.4,
+      "image": "https://images.unsplash.com/photo-1492107376256-4026437926cd?w=400&auto=format&fit=crop&q=60"
+    }
+  ]
+}
