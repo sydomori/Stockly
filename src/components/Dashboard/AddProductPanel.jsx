@@ -30,6 +30,9 @@ export default function AddProductPanel() {
                     <TextField name="price" sx={inputStyles} label="Price (KES)" fullWidth size="small" placeholder='2000' />
                     <TextField name="category" sx={inputStyles} label="Category" fullWidth size="small" placeholder='e.g Electronics' />
                     <TextField name='image' sx={inputStyles} label="Image URL" fullWidth size="small" placeholder='https://...' />
+                </Stack>
+                <Stack sx={{display:'flex', justifyContent:'flex-end'}} direction="row" spacing={2}>
+                    <Button sx={{width:'100px',color:'var(--text-primary)', '&:hover':{bgcolor:'var(--background)'}}}>Cancel</Button>
                     <Button sx={{width:'200px', bgcolor:'var(--primary-action)',color:'var(--background)'}} variant="contained">Add</Button>
                 </Stack>
             </Stack>
