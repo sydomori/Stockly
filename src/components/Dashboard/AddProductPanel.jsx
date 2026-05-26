@@ -26,9 +26,10 @@ export default function AddProductPanel() {
                     <Typography sx={{color:'var(--muted-text)'}} variant='body2' mb={2}>Fill in the product details to add a new item to your inventory.</Typography>
                 </Stack>
                 <Stack direction="row" spacing={2}>
-                    <TextField sx={inputStyles} label="Product Name" fullWidth size="small" placeholder='e.g JBL Headphones' />
-                    <TextField sx={inputStyles} label="Price (KES)" fullWidth size="small" placeholder='2000' />
-                    <TextField sx={inputStyles} label="Image URL" fullWidth size="small" placeholder='https://...' />
+                    <TextField name="name" sx={inputStyles} label="Product Name" fullWidth size="small" placeholder='e.g JBL Headphones' />
+                    <TextField name="price" sx={inputStyles} label="Price (KES)" fullWidth size="small" placeholder='2000' />
+                    <TextField name="category" sx={inputStyles} label="Category" fullWidth size="small" placeholder='e.g Electronics' />
+                    <TextField name='image' sx={inputStyles} label="Image URL" fullWidth size="small" placeholder='https://...' />
                     <Button sx={{width:'200px', bgcolor:'var(--primary-action)',color:'var(--background)'}} variant="contained">Add</Button>
                 </Stack>
             </Stack>
