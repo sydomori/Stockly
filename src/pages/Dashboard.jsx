@@ -11,30 +11,35 @@ import AddProductPanel from '../components/Dashboard/AddProductPanel'
 
 export default function Dashboard() {
     const [open, setOpen] = useState(false)
-    return (
-        <Container>
-            <NavBar />
-            <PageHeader filterOpen={open} setFilterOpen={setOpen} />
-            <Collapse in={open} sx={{mt: 6.5, ml:73}}>
-                <Box sx={{display: 'flex', gap: 2, mt: 2, p: 2, bgcolor: 'var(--primary-action)', borderRadius: 1, width: '300px'}}>
-                        <Select size="small" defaultValue="all" sx={{width: '200px'}}>
-                            <MenuItem value="all">All</MenuItem>
-                            <MenuItem value="audio">Audio</MenuItem>
-                            <MenuItem value="footwear">Footwear</MenuItem>
-                            <MenuItem value="wearables">Wearables</MenuItem>
-                            <MenuItem value="cameras">Cameras</MenuItem>
-                            <MenuItem value="electronics">Electronics</MenuItem>
-                        </Select>
+    const [isAddingProduct, setIsAddingProduct] = useState(false)
 
-                        <Select size="small" defaultValue="all" sx={{minWidth: 150}}>
-                            <MenuItem value="all">All</MenuItem>
-                            <MenuItem value="in_stock">In Stock</MenuItem>
-                            <MenuItem value="low_stock">Low Stock</MenuItem>
-                            <MenuItem value="out_of_stock">Out of Stock</MenuItem>
-                        </Select>
-                </Box>
-            </Collapse>
-            <AddProductPanel />
-        </Container>
+    return (
+        <>
+            <NavBar />
+            <Container>
+                <PageHeader isAddingProduct={isAddingProduct} onToggleAdd={()=> setIsAddingProduct(!isAddingProduct)} filterOpen={open} setFilterOpen={setOpen} />
+                <Collapse in={open} sx={{mt: 6.5, ml:73}}>
+                    <Box sx={{display: 'flex', gap: 2, mt: 2, p: 2, bgcolor: 'var(--primary-action)', borderRadius: 1, width: '300px'}}>
+                            <Select size="small" defaultValue="all" sx={{width: '200px'}}>
+                                <MenuItem value="all">All</MenuItem>
+                                <MenuItem value="audio">Audio</MenuItem>
+                                <MenuItem value="footwear">Footwear</MenuItem>
+                                <MenuItem value="wearables">Wearables</MenuItem>
+                                <MenuItem value="cameras">Cameras</MenuItem>
+                                <MenuItem value="electronics">Electronics</MenuItem>
+                            </Select>
+
+                            <Select size="small" defaultValue="all" sx={{minWidth: 150}}>
+                                <MenuItem value="all">All</MenuItem>
+                                <MenuItem value="in_stock">In Stock</MenuItem>
+                                <MenuItem value="low_stock">Low Stock</MenuItem>
+                                <MenuItem value="out_of_stock">Out of Stock</MenuItem>
+                            </Select>
+                    </Box>
+                </Collapse>
+                <AddProductPanel onCancel={() => setIsAddingProduct(false)} />
+            </Container>
+            
+        </>
     )
 }
