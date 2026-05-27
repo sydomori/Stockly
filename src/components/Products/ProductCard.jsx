@@ -69,13 +69,13 @@ export default function ProductCard({product}) {
                     KES {price.toLocaleString()}
                 </Typography>
             </CardContent>
-            <Box>
+            <Box sx={{display:'flex', justifyContent:'space-between', alignItems:'center', px: 2, pb: 2}}>
                 <Button
                 startIcon={<EditIcon />}
                 variant="outlined"
                 color="inherit"
                 fullWidth
-                sx={{mr: 1, borderColor: 'var(--border)', color: 'var(--text-primary)'}}
+                sx={{bgcolor: 'var(--primary-action)', mr: 1, borderColor: 'var(--border)', color: 'var(--background)'}}
                 >
                     Edit
                 </Button>

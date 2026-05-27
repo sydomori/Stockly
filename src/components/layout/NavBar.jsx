@@ -25,7 +25,7 @@ export default function NavBar(){
                 <img src={logo} alt="Stockly" style={{height: 40, borderRadius: '30%'}} />
                 Stockly
              </Typography>
-             <Box sx={{display: 'flex', gap: 4, ml: 4}}>
+             <Box sx={{display: 'flex', gap: 2, ml: 4}}>
                 {navLinks.map((link) => (
                     link.name === 'Dashboard' ? (
                     <Button 
