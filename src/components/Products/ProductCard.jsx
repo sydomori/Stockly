@@ -14,27 +14,27 @@ import '../../App.css';
 
 
 const stockConfig = {
-    inStock: {
+    in_stock: {
         label: 'In Stock',
         color: 'success'
     },
-    lowStock: {
+    low_stock: {
         label: 'Low Stock',
         color: 'warning'
     },
-    outOfStock: {
+    out_of_stock: {
         label: 'Out of Stock',
         color: 'error'
     }
 }
-const badge = stockConfig[stock];
+
 
 
 
 export default function ProductCard({product}) {
     const {name, price, category, image, rating, stock} = product;
     return (
-        <Card sx={{bgcolor:'var(--card-surface), borderRadius: 2', border: '1px solid var(--border)',display: 'flex', flexDirection: 'column'}}>
+        <Card sx={{bgcolor:'var(--card-surface)', borderRadius: 2, border: '1px solid var(--border)',display: 'flex', flexDirection: 'column'}}>
             <Box sx={{position: 'relative'}}>
                 <CardMedia
                     component="img"
@@ -44,8 +44,8 @@ export default function ProductCard({product}) {
                     sx={{objectFit: 'cover'}}
                 />
                 <Chip
-                    label={badge.label}
-                    color={badge.color}
+                    label={stockConfig[stock].label}
+                    color={stockConfig[stock].color}
                     size="small"
                     sx={{position: 'absolute', top: 8, right: 8}}
                 />
