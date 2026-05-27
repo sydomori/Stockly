@@ -8,6 +8,7 @@ import Box from '@mui/material/Box'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import AddProductPanel from '../components/Dashboard/AddProductPanel'
+import ProductList from '../components/Products/ProductList'
 
 export default function Dashboard() {
     const [open, setOpen] = useState(false)
@@ -44,6 +45,22 @@ export default function Dashboard() {
         })
     }
 
+    function fetchProducts(){
+        fetch(url)
+        .then((response)=>{
+            if(!response.ok){
+                throw new Error('Failed to fetch products')
+            }
+            return response.json()
+        })
+        .then((data)=>{
+            setProducts(data)
+        })
+        .catch((error)=>{
+            console.error('Error fetching products:', error)
+        })
+    }
+
     return (
         <>
             <NavBar />
@@ -71,6 +88,7 @@ export default function Dashboard() {
                 <Collapse in={isAddingProduct}>
                     <AddProductPanel onCancel={() => setIsAddingProduct(false)} onAddProduct={addProduct}/>
                 </Collapse>
+                <ProductList products={products} />
             </Container>
             
         </>
