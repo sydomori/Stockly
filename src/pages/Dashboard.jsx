@@ -12,6 +12,37 @@ import AddProductPanel from '../components/Dashboard/AddProductPanel'
 export default function Dashboard() {
     const [open, setOpen] = useState(false)
     const [isAddingProduct, setIsAddingProduct] = useState(false)
+    const [products, setProducts] = useState([])
+
+    const url = 'http://localhost:5000/products'
+
+    function addProduct(product){
+        const productsWithDefaults = {
+            ...product,
+            stock:'in_stock',
+            rating: 0
+        }
+
+        fetch(url,{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(productsWithDefaults)
+        })
+        .then((response)=>{
+            if(!response.ok){
+                throw new Error('Failed to add product')
+            }
+            return response.json()
+        })
+        .then((newProduct)=>{
+            setProducts((prevProducts) => [...prevProducts, newProduct])
+        })
+        .catch((error)=>{
+            console.error('Error adding product:', error)
+        })
+    }
 
     return (
         <>
@@ -38,7 +69,7 @@ export default function Dashboard() {
                     </Box>
                 </Collapse>
                 <Collapse in={isAddingProduct}>
-                    <AddProductPanel onCancel={() => setIsAddingProduct(false)} />
+                    <AddProductPanel onCancel={() => setIsAddingProduct(false)} onAddProduct={addProduct}/>
                 </Collapse>
             </Container>
             
