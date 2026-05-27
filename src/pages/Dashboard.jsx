@@ -9,6 +9,7 @@ import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import AddProductPanel from '../components/Dashboard/AddProductPanel'
 import ProductList from '../components/Products/ProductList'
+import { useEffect } from 'react'
 
 export default function Dashboard() {
     const [open, setOpen] = useState(false)
@@ -60,6 +61,10 @@ export default function Dashboard() {
             console.error('Error fetching products:', error)
         })
     }
+
+    useEffect(() => {
+        fetchProducts()
+    }, [])
 
     return (
         <>
