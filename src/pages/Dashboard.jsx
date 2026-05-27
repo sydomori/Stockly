@@ -73,21 +73,21 @@ export default function Dashboard() {
                 <PageHeader isAddingProduct={isAddingProduct} onToggleAdd={()=> setIsAddingProduct(!isAddingProduct)} filterOpen={open} setFilterOpen={setOpen} />
                 <Collapse in={open} sx={{mt: -5.0, ml:100}}>
                     <Box sx={{display: 'flex', gap: 2, mt: 2, p: 2, bgcolor: 'var(--primary-action)', borderRadius: 1, width: '300px'}}>
-                            <Select size="small" defaultValue="all" sx={{width: '200px'}}>
-                                <MenuItem value="all">All</MenuItem>
-                                <MenuItem value="audio">Audio</MenuItem>
-                                <MenuItem value="footwear">Footwear</MenuItem>
-                                <MenuItem value="wearables">Wearables</MenuItem>
-                                <MenuItem value="cameras">Cameras</MenuItem>
-                                <MenuItem value="electronics">Electronics</MenuItem>
-                            </Select>
+                        <Select size="small" defaultValue="all" sx={{width: '200px'}}>
+                            <MenuItem value="all">All</MenuItem>
+                            <MenuItem value="audio">Audio</MenuItem>
+                            <MenuItem value="footwear">Footwear</MenuItem>
+                            <MenuItem value="wearables">Wearables</MenuItem>
+                            <MenuItem value="cameras">Cameras</MenuItem>
+                            <MenuItem value="electronics">Electronics</MenuItem>
+                        </Select>
 
-                            <Select size="small" defaultValue="all" sx={{minWidth: 150}}>
-                                <MenuItem value="all">All</MenuItem>
-                                <MenuItem value="in_stock">In Stock</MenuItem>
-                                <MenuItem value="low_stock">Low Stock</MenuItem>
-                                <MenuItem value="out_of_stock">Out of Stock</MenuItem>
-                            </Select>
+                        <Select size="small" defaultValue="all" sx={{minWidth: 150}}>
+                            <MenuItem value="all">All</MenuItem>
+                            <MenuItem value="in_stock">In Stock</MenuItem>
+                            <MenuItem value="low_stock">Low Stock</MenuItem>
+                            <MenuItem value="out_of_stock">Out of Stock</MenuItem>
+                        </Select>
                     </Box>
                 </Collapse>
                 <Collapse in={isAddingProduct}>

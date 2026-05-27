@@ -47,7 +47,7 @@ export default function AddProductPanel({onCancel, onAddProduct}) {
                 </Stack>
                 <Stack direction="row" spacing={2}>
                     <TextField name="name" sx={inputStyles} label="Product Name" fullWidth size="small" placeholder='e.g JBL Headphones' value={productName} onChange={(e) => setProductName(e.target.value)} />
-                    <TextField name="price" sx={inputStyles} label="Price (KES)" fullWidth size="small" placeholder='2000' value={productPrice} onChange={(e) => setProductPrice(e.target.value)} />
+                    <TextField type='number' slotProps={{htmlInput:{step:500}}} name="price" sx={inputStyles} label="Price (KES)" fullWidth size="small" placeholder='2000' value={productPrice} onChange={(e) => setProductPrice(e.target.value)} />
                     <TextField name="category" sx={inputStyles} label="Category" fullWidth size="small" placeholder='e.g Electronics' value={productCategory} onChange={(e) => setProductCategory(e.target.value)} />
                     <TextField name='image' sx={inputStyles} label="Image URL" fullWidth size="small" placeholder='https://...' value={productImage} onChange={(e) => setProductImage(e.target.value)} />
                 </Stack>
