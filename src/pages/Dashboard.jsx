@@ -9,62 +9,10 @@ import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import AddProductPanel from '../components/Dashboard/AddProductPanel'
 import ProductList from '../components/Products/ProductList'
-import { useEffect } from 'react'
 
-export default function Dashboard() {
+export default function Dashboard({products, addProduct}) {
     const [open, setOpen] = useState(false)
     const [isAddingProduct, setIsAddingProduct] = useState(false)
-    const [products, setProducts] = useState([])
-
-    const url = 'http://localhost:5000/products'
-
-    function addProduct(product){
-        const productsWithDefaults = {
-            ...product,
-            stock:'in_stock',
-            rating: 0
-        }
-
-        fetch(url,{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(productsWithDefaults)
-        })
-        .then((response)=>{
-            if(!response.ok){
-                throw new Error('Failed to add product')
-            }
-            return response.json()
-        })
-        .then((newProduct)=>{
-            setProducts((prevProducts) => [...prevProducts, newProduct])
-        })
-        .catch((error)=>{
-            console.error('Error adding product:', error)
-        })
-    }
-
-    function fetchProducts(){
-        fetch(url)
-        .then((response)=>{
-            if(!response.ok){
-                throw new Error('Failed to fetch products')
-            }
-            return response.json()
-        })
-        .then((data)=>{
-            setProducts(data)
-        })
-        .catch((error)=>{
-            console.error('Error fetching products:', error)
-        })
-    }
-
-    useEffect(() => {
-        fetchProducts()
-    }, [])
 
     return (
         <>
