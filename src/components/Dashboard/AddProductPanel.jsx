@@ -5,6 +5,10 @@ import TextField from '@mui/material/TextField'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import { useState } from 'react'
+import FormControl from '@mui/material/FormControl'
+import InputLabel from '@mui/material/InputLabel'
+import Select from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
 
 export default function AddProductPanel({onCancel, onAddProduct}) {
     const inputStyles = {
@@ -48,7 +52,21 @@ export default function AddProductPanel({onCancel, onAddProduct}) {
                 <Stack direction="row" spacing={2}>
                     <TextField name="name" sx={inputStyles} label="Product Name" fullWidth size="small" placeholder='e.g JBL Headphones' value={productName} onChange={(e) => setProductName(e.target.value)} />
                     <TextField type='number' slotProps={{htmlInput:{step:500}}} name="price" sx={inputStyles} label="Price (KES)" fullWidth size="small" placeholder='2000' value={productPrice} onChange={(e) => setProductPrice(e.target.value)} />
-                    <TextField name="category" sx={inputStyles} label="Category" fullWidth size="small" placeholder='e.g Electronics' value={productCategory} onChange={(e) => setProductCategory(e.target.value)} />
+                    <FormControl fullWidth size='small' sx={inputStyles}>
+                        <InputLabel>Category</InputLabel>
+                        <Select
+                            sx={{bgcolor:'var(--primary-action)'}}
+                            value={productCategory}
+                            label="Category"
+                            onChange={(e) => setProductCategory(e.target.value)}
+                        >
+                            <MenuItem value="audio">Audio</MenuItem>
+                            <MenuItem value="footwear">Footwear</MenuItem>
+                            <MenuItem value="wearables">Wearables</MenuItem>
+                            <MenuItem value="cameras">Cameras</MenuItem>
+                            <MenuItem value="electronics">Electronics</MenuItem>
+                        </Select>
+                    </FormControl>
                     <TextField name='image' sx={inputStyles} label="Image URL" fullWidth size="small" placeholder='https://...' value={productImage} onChange={(e) => setProductImage(e.target.value)} />
                 </Stack>
                 <Stack sx={{display:'flex', justifyContent:'flex-end'}} direction="row" spacing={2}>
