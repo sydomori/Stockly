@@ -10,7 +10,7 @@ import addCircle from '../../assets/addCircle.svg'
 
 export default function PageHeader({filterOpen, setFilterOpen, isAddingProduct, onToggleAdd}){
     return(
-        <Box sx={{display: 'flex',flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', mb: 3, position: 'relative', top: '80px'}}>
+        <Box sx={{display: 'flex',flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', mb: 2, position: 'relative', top: '70px'}}>
             <Stack direction="row" spacing={2} sx={{width: '100%', display:'flex', justifyContent:'space-between', alignItems:'center'}}>
                 <Stack spacing={0.5}>
                     <Typography sx={{color: 'var(--text-primary)'}} variant="h4" fontWeight="bold">

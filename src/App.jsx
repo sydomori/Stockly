@@ -59,7 +59,7 @@ function App() {
   return(
     <BrowserRouter>
     <Routes>
-        <Route path="/" element={<Dashboard products={products} addProduct={addProduct} />} />
+        <Route path="/" element={<Dashboard products={products.slice(0,4)} addProduct={addProduct} />} />
         <Route path="/products" element={<Products />} />
     </Routes>
     </BrowserRouter>
