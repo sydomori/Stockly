@@ -49,7 +49,7 @@ export default function AddProductPanel({onCancel, onAddProduct}) {
                     <Typography variant='h5' mb={2}>Add Product</Typography>
                     <Typography sx={{color:'var(--muted-text)'}} variant='body2' mb={2}>Fill in the product details to add a new item to your inventory.</Typography>
                 </Stack>
-                <Stack direction="row" spacing={2}>
+                <Stack direction="row" spacing={2}> 
                     <TextField name="name" sx={inputStyles} label="Product Name" fullWidth size="small" placeholder='e.g JBL Headphones' value={productName} onChange={(e) => setProductName(e.target.value)} />
                     <TextField type='number' slotProps={{htmlInput:{step:500}}} name="price" sx={inputStyles} label="Price (KES)" fullWidth size="small" placeholder='2000' value={productPrice} onChange={(e) => setProductPrice(e.target.value)} />
                     <FormControl fullWidth size='small' sx={inputStyles}>
