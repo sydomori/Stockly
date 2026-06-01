@@ -60,7 +60,7 @@ function App() {
     <BrowserRouter>
     <Routes>
         <Route path="/" element={<Dashboard products={products.slice(0,4)} addProduct={addProduct} />} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/products" element={<Products products={products} />} />
     </Routes>
     </BrowserRouter>
   )
