@@ -20,7 +20,7 @@ export default function ProductRow({product}){
     return (
         <Box sx={{display:'flex', alignItems:'center', gap:2,p:2, bgcolor:'var(--card-surface)',border:'1px solid var(--border)',borderRadius:2,mb:1}}>
             <Box component='img' src={image} alt={name} sx={{width:64, height:64, objectFit:'cover', borderRadius:1,flexShrink:0}} />
-            <Box sx={{flex:2}}>
+            <Box sx={{flex:1}}>
                 <Typography variant='subtitle2' fontWeight='bold' sx={{color:'var(--text-primary)'}}>
                     {name}
                 </Typography>

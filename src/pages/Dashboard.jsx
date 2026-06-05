@@ -13,6 +13,9 @@ import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import GridViewIcon from '@mui/icons-material/GridView'
 import ListIcon from '@mui/icons-material/List'
+import ProductTable from '../components/Products/productTable'
+
+
 
 export default function Dashboard({products, addProduct}) {
     const [open, setOpen] = useState(false)
@@ -50,7 +53,9 @@ export default function Dashboard({products, addProduct}) {
                     <ToggleButton sx={{color: 'var(--text-primary)'}} value='grid'><GridViewIcon  fontSize='small'/></ToggleButton>
                     <ToggleButton sx={{color: 'var(--text-primary)'}} value='list'><ListIcon fontSize='small' /></ToggleButton>
                 </ToggleButtonGroup>
-                <ProductList products={products} />
+                {
+                    view === 'grid' ? <ProductList products={products} /> : <ProductTable products = {products} />
+                }
             </Container>
             
         </>
