@@ -13,4 +13,5 @@ body {
     --muted-text: #a1a1a1;
     --danger: #ff6467;
     --text-primary: #ffffff;
+    --box-shadow: rgba(255, 255, 255, 0.3);
 }

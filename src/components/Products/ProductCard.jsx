@@ -34,7 +34,7 @@ const stockConfig = {
 export default function ProductCard({product}) {
     const {name, price, category, image, rating, stock} = product;
     return (
-        <Card sx={{bgcolor:'var(--card-surface)', borderRadius: 2, border: '1px solid var(--border)',display: 'flex', flexDirection: 'column'}}>
+        <Card sx={{bgcolor:'var(--card-surface)', borderRadius: 2, border: '1px solid var(--border)',display: 'flex', flexDirection: 'column', '&:hover': {boxShadow: '0 4px 12px var(--box-shadow)'}}}>
             <Box sx={{position: 'relative'}}>
                 <CardMedia
                     component="img"
