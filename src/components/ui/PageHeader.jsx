@@ -8,7 +8,7 @@ import "../../App.css"
 import addCircle from '../../assets/addCircle.svg'
 
 
-export default function PageHeader({filterOpen, setFilterOpen, isAddingProduct, onToggleAdd}){
+export default function PageHeader({filterOpen = false, setFilterOpen = () => {}, isAddingProduct = false, onToggleAdd = () => {}}){
     return(
         <Box sx={{display: 'flex',flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', mb: 2, position: 'relative', top: '70px'}}>
             <Stack direction="row" spacing={2} sx={{width: '100%', display:'flex', justifyContent:'space-between', alignItems:'center'}}>
