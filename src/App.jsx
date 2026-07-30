@@ -1,68 +1,24 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Login from './pages/Login'
+import SetPassword from './pages/setPassword'
+import ProtectedRoute from './components/login/protectedRoute'
 import Dashboard from './pages/Dashboard'
 import Products from './pages/Products'
-import { useEffect, useState } from 'react'
+import { AuthProvider } from './context/AuthContext'
 
-function App() {
-  const [products, setProducts] = useState([])
-  
-  const url = 'http://localhost:5000/products'
-
-  function addProduct(product){
-    const productWithDefaults = {
-      ...product,
-      stock: 'in_stock',
-      rating:0
-    }
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(productWithDefaults)
-    })
-    .then((response)=>{
-      if(!response.ok){
-        throw new Error('Failed to add product')
-      }
-      return response.json()
-    })
-    .then((newProduct)=>{
-      setProducts((prevProducts) => [...prevProducts, newProduct])
-    })
-    .catch((error)=>{
-      console.error('Error adding product:', error)
-    })
-  }
-
-  function fetchProducts(){
-    fetch(url)
-    .then((response)=>{
-      if(!response.ok){
-        throw new Error('Failed to fetch products')
-      }
-      return response.json()
-    })
-    .then((data)=>{
-      setProducts(data)
-    })
-    .catch((error)=>{
-      console.error('Error fetching products:', error)
-    })
-  }
-
-  useEffect(()=>{
-    fetchProducts()
-  }, [])
-
-  return(
-    <BrowserRouter>
-    <Routes>
-        <Route path="/" element={<Dashboard products={products.slice(0,4)} addProduct={addProduct} />} />
-        <Route path="/products" element={<Products products={products} addProduct={addProduct} />} />
-    </Routes>
-    </BrowserRouter>
+function App(){
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+           <Route path="/login" element={<Login />} />
+          <Route path="/set-password" element={<SetPassword />} />
+          <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/products" element={<ProtectedRoute><Products /></ProtectedRoute>} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   )
 }
 
