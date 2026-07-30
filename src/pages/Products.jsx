@@ -19,20 +19,27 @@ export default function Products(){
     const [products, setProducts] = useState([])
     const [error,setError] = useState('')
 
-    function fetchProducts(){
-        getProducts()
-            .then(setProducts)
-            .catch((error) => setError(error.message))
-    }
+    function fetchData() {
+    Promise.all([getProducts(), getCategories()])
+        .then(([productsData, categoriesData]) => {
+            const categoryMap = Object.fromEntries(categoriesData.map(c => [c.id, c.name]));
+            const enrichedProducts = productsData.map(p => ({
+                ...p,
+                category_name: categoryMap[p.category_id]
+            }));
+            setProducts(enrichedProducts);
+        })
+        .catch((err) => setError(err.message));
+}
 
     useEffect(() => {
-        fetchProducts()
+        fetchData()
     }, [])
 
     function handleAddProduct(productData){
         createProduct(productData)
-            .then((newProduct)=>{
-                setProducts((prevProducts) => [...prevProducts, newProduct])
+            .then(()=>{
+                fetchData()
                 setIsAddingProduct(false)
             })
             .catch((error)=> setError(error.message))
