@@ -14,6 +14,7 @@ import GridViewIcon from '@mui/icons-material/GridView'
 import ListIcon from '@mui/icons-material/List'
 import ProductTable from '../components/Products/productTable'
 import { getProducts, createProduct } from '../api/products'
+import {getCategories} from '../api/categories'
 
 export default function Dashboard() {
     const [open, setOpen] = useState(false)
@@ -22,20 +23,27 @@ export default function Dashboard() {
     const [products, setProducts] = useState([])
     const [error,setError] = useState('')
 
-    function fetchProducts(){
-        getProducts()
-        .then(setProducts)
-        .catch((error) => setError(error.message))
-    }
+   function fetchData() {
+      Promise.all([getProducts(), getCategories()])
+        .then(([productsData, categoriesData]) => {
+            const categoryMap = Object.fromEntries(categoriesData.map(c => [c.id, c.name]));
+            const enrichedProducts = productsData.map(p => ({
+                ...p,
+                category_name: categoryMap[p.category_id]
+            }));
+            setProducts(enrichedProducts);
+        })
+        .catch((err) => setError(err.message));
+   }
 
     useEffect(() => {
-        fetchProducts()
+        fetchData();
     }, [])
 
     function handleAddProduct(productData){
         createProduct(productData)
-        .then((newProduct)=>{
-            setProducts((prevProducts) => [...prevProducts, newProduct])
+        .then(()=>{
+            fetchData()
             setIsAddingProduct(false)
         })
         .catch((error)=> setError(error.message))
