@@ -11,12 +11,14 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import GridViewIcon from '@mui/icons-material/GridView'
 import ListIcon from '@mui/icons-material/List'
 import ProductTable from '../components/Products/productTable'
-import { getProducts, createProduct } from '../api/products'
+import { getProducts, createProduct, deleteProduct, updateProduct} from '../api/products'
 import {getCategories} from '../api/categories'
+import EditProductPanel from '../components/Products/EditProductPanel'
 
 
 export default function Products(){
     const [isAddingProduct, setIsAddingProduct] = useState(false)
+    const [isEditingProduct, setIsEditingProduct] = useState(false)
     const [view, setView] = useState('grid')
     const [products, setProducts] = useState([])
     const [error,setError] = useState('')
@@ -46,6 +48,22 @@ export default function Products(){
             })
             .catch((error)=> setError(error.message))
     }
+    function handleUpdateProduct(id, productData){
+     updateProduct(id, productData)
+     .then(()=>{
+       fetchData()
+       setEditingProduct(null)
+     })
+     .catch((error)=>setError(error.message))
+   }
+
+   function handleDeleteProduct(id){
+     deleteProduct(id)
+     .then(()=>{
+       fetchData()
+     })
+     .catch((error)=> setError(error.message))
+   }
 
     return (
         <Container>
