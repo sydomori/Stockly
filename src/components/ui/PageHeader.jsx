@@ -6,6 +6,8 @@ import DownloadIcon from '@mui/icons-material/Download'
 import Stack from '@mui/material/Stack'
 import "../../App.css"
 import addCircle from '../../assets/addCircle.svg'
+import SearchIcon from '@mui/icons-material/Search'
+import Input from '@mui/material/Input'
 
 
 export default function PageHeader({filterOpen = false, setFilterOpen = () => {}, isAddingProduct = false, onToggleAdd = () => {}}){
@@ -20,9 +22,9 @@ export default function PageHeader({filterOpen = false, setFilterOpen = () => {}
                         Manage your inventory and add new products to your catalog
                     </Typography>
                 </Stack>
-                <Box sx={{display: 'flex', gap: 2}}>
-                    <Button startIcon={<FilterListIcon />} variant="text" sx={{color: 'var(--text-primary)', '&:hover': {bgcolor: 'var(--primary-action)',color:'var(--background)'}}} onClick={() => setFilterOpen(!filterOpen)}>Filter</Button>
-                    <Button startIcon={<DownloadIcon />} variant="text" sx={{color: 'var(--text-primary)', '&:hover': {bgcolor: 'var(--primary-action)',color:'var(--background)'}}}>Export</Button>
+                <Box sx={{ display: 'flex', alignItems: 'center', bgcolor: 'var(--card-surface)', borderRadius: 1, px: 1, py: 0.5, width: '500px' }}>
+                    <SearchIcon sx={{ color: 'var(--muted-text)', mr: 1 }} />
+                    <Input fullWidth disableUnderline placeholder="Search..." sx={{ color: 'var(--muted-text)' }} />
                 </Box>
             </Stack>
             
