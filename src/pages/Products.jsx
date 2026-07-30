@@ -12,6 +12,8 @@ import GridViewIcon from '@mui/icons-material/GridView'
 import ListIcon from '@mui/icons-material/List'
 import ProductTable from '../components/Products/productTable'
 import { getProducts, createProduct } from '../api/products'
+import {getCategories} from '../api/categories'
+
 
 export default function Products(){
     const [isAddingProduct, setIsAddingProduct] = useState(false)

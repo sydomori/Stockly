@@ -9,7 +9,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import '../../App.css';
-import { getStockStatus } from '../../utils/stock';
+import { getStockStatus } from '../../helpers/stock';
 
 export default function ProductCard({product}){
     const {name, price, category_name, image_url, stock_quantity} = product
