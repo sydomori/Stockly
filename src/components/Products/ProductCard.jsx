@@ -11,7 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import '../../App.css';
 import { getStockStatus } from '../../helpers/stock';
 
-export default function ProductCard({product}){
+export default function ProductCard({product, onEdit, onDelete}){
     const {name, price, category_name, image_url, stock_quantity} = product
     const badge = getStockStatus(stock_quantity);
 
@@ -49,11 +49,17 @@ export default function ProductCard({product}){
                     variant="outlined"
                     color="inherit"
                     fullWidth
+                    onClick={() => onEdit(product)}
                     sx={{ bgcolor: 'var(--primary-action)', mr: 1, borderColor: 'var(--border)', color: 'var(--background)' }}
                 >
                     Edit
                 </Button>
-                <IconButton size='small' sx={{ color: 'error.main' }}>
+                <IconButton 
+                 size='small' 
+                 sx={{ color: 'error.main' }}
+                 onClick={() => onDelete(product)}
+                
+                >
                     <DeleteIcon fontSize="small" />
                 </IconButton>
             </Box>
