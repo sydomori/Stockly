@@ -10,9 +10,10 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import '../../App.css';
 import { getStockStatus } from '../../helpers/stock';
+import { useNavigate} from 'react-router-dom';
 
 export default function ProductCard({product, onEdit, onDelete}){
-    console.log(onEdit)
+    const navigate = useNavigate()
     const {name, price, category_name, image_url, stock_quantity} = product
     const badge = getStockStatus(stock_quantity);
 
@@ -24,6 +25,7 @@ export default function ProductCard({product, onEdit, onDelete}){
                     height="200"
                     image={image_url}
                     alt={name}
+                    onClick={()=>{'/products/${product.id}'}}
                     sx={{ objectFit: 'cover' }}
                 />
                 <Chip
@@ -37,7 +39,7 @@ export default function ProductCard({product, onEdit, onDelete}){
                 <Typography variant='caption' sx={{ color: 'var(--muted-text)', textTransform: 'uppercase', letterSpacing: 1, mb: 0.5, display: 'block' }}>
                     {category_name || 'Uncategorized'}
                 </Typography>
-                <Typography variant='subtitle2' fontWeight="bold" sx={{ color: 'var(--text-primary)', mb: 0.5 }}>
+                <Typography onclick={()=>{navigate(`/products/${product.id}`)}} variant='subtitle2' fontWeight="bold" sx={{ color: 'var(--text-primary)', mb: 0.5 }}>
                     {name}
                 </Typography>
                 <Typography variant='body2' fontWeight="bold" sx={{ color: 'var(--text-primary)', mb: 0.5 }}>
