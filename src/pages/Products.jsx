@@ -18,7 +18,7 @@ import EditProductPanel from '../components/Products/EditProductPanel'
 
 export default function Products(){
     const [isAddingProduct, setIsAddingProduct] = useState(false)
-    const [isEditingProduct, setIsEditingProduct] = useState(false)
+    const [editingProduct, setEditingProduct] = useState(null)
     const [view, setView] = useState('grid')
     const [products, setProducts] = useState([])
     const [error,setError] = useState('')
@@ -48,6 +48,11 @@ export default function Products(){
             })
             .catch((error)=> setError(error.message))
     }
+    
+    function handleEditProduct(product){
+     setEditingProduct(product)
+    }
+
     function handleUpdateProduct(id, productData){
      updateProduct(id, productData)
      .then(()=>{
@@ -77,6 +82,12 @@ export default function Products(){
                 onCancel={() => setIsAddingProduct(false)}
                 onAddProduct={handleAddProduct}
             />
+            <EditProductPanel
+              open={Boolean(editingProduct)}
+              product={editingProduct}
+              onCancel={()=>setEditingProduct(null)}
+              onUpdateProduct={handleUpdateProduct}
+            />
             <Container disableGutters sx={{ mt: 10 }}>
                 <Box>
                     <Typography sx={{ color: '#ffffff' }} variant="h4" fontWeight="bold">
@@ -87,7 +98,7 @@ export default function Products(){
                         <ToggleButton sx={{ color: 'var(--text-primary)' }} value='list'><ListIcon fontSize='small' /></ToggleButton>
                     </ToggleButtonGroup>
                     {error && <Box sx={{ color: 'error.main', mt: 2 }}>{error}</Box>}
-                    {view === 'grid' ? <ProductList products={products} /> : <ProductTable products={products} />}
+                    {view === 'grid' ? <ProductList products={products} onEdit={handleEditProduct} onDelete={handleDeleteProduct} /> : <ProductTable products={products} onEdit={handleEditProduct} onDelete={handleDeleteProduct} />}
                 </Box>
             </Container>
         </Container>

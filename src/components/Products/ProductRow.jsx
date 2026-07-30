@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { getStockStatus } from '../../helpers/stock';
 
-export default function ProductRow({product}){
+export default function ProductRow({product, onEdit, onDelete}){
     const { name, price, category_name, image_url, stock_quantity } = product;
     const badge = getStockStatus(stock_quantity);
 
@@ -31,10 +31,10 @@ export default function ProductRow({product}){
                 <Chip size='small' label={badge.label} color={badge.color} />
             </Box>
             <Box sx={{ flex: 1, display: 'flex', alignItems: 'center', gap: 1, flexShrink: 0 }}>
-                <Button variant='outlined' color='inherit' size='small' sx={{ borderColor: 'var(--border)', color: 'var(--text-primary)' }} startIcon={<EditIcon />}>
+                <Button onClick={() => onEdit(product)} variant='outlined' color='inherit' size='small' sx={{ borderColor: 'var(--border)', color: 'var(--text-primary)' }} startIcon={<EditIcon />}>
                     Edit
                 </Button>
-                <IconButton sx={{ size: 'small', color: 'error.main' }}>
+                <IconButton onClick={() => onDelete(product)} sx={{ size: 'small', color: 'error.main' }}>
                     <DeleteIcon fontSize='small' />
                 </IconButton>
             </Box>

@@ -12,6 +12,7 @@ import '../../App.css';
 import { getStockStatus } from '../../helpers/stock';
 
 export default function ProductCard({product, onEdit, onDelete}){
+    console.log(onEdit)
     const {name, price, category_name, image_url, stock_quantity} = product
     const badge = getStockStatus(stock_quantity);
 
@@ -57,7 +58,7 @@ export default function ProductCard({product, onEdit, onDelete}){
                 <IconButton 
                  size='small' 
                  sx={{ color: 'error.main' }}
-                 onClick={() => onDelete(product)}
+                 onClick={() => onDelete(product.id)}
                 
                 >
                     <DeleteIcon fontSize="small" />
