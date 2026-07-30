@@ -6,6 +6,8 @@ import ProtectedRoute from './components/login/protectedRoute'
 import Dashboard from './pages/Dashboard'
 import Products from './pages/Products'
 import { AuthProvider } from './context/AuthContext'
+import ProductDetail from './pages/ProductDetail'
+import MyActivity from './pages/MyActivity'
 
 function App(){
   return (
@@ -16,6 +18,8 @@ function App(){
           <Route path="/set-password" element={<SetPassword />} />
           <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/products" element={<ProtectedRoute><Products /></ProtectedRoute>} />
+          <Route path="/products/:id" element={<ProtectedRoute><ProductDetail /></ProtectedRoute>} />
+          <Route path="/my-activity" element={<ProtectedRoute><MyActivity /></ProtectedRoute>} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
