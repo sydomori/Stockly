@@ -16,7 +16,7 @@ import ProductTable from '../components/Products/productTable'
 import { getProducts, createProduct } from '../api/products'
 import {getCategories} from '../api/categories'
 
-export default function Dashboard() {
+export default function Dashboard({}) {
     const [open, setOpen] = useState(false)
     const [isAddingProduct, setIsAddingProduct] = useState(false)
     const [view, setView] = useState('grid')
@@ -45,6 +45,27 @@ export default function Dashboard() {
         .then(()=>{
             fetchData()
             setIsAddingProduct(false)
+        })
+        .catch((error)=> setError(error.message))
+    }
+
+    function handleEditProduct(product){
+         setEditingProduct(product)
+        }
+    
+    function handleUpdateProduct(id, productData){
+        updateProduct(id, productData)
+        .then(()=>{
+        fetchData()
+        setEditingProduct(null)
+        })
+        .catch((error)=>setError(error.message))
+    }
+
+    function handleDeleteProduct(id){
+        deleteProduct(id)
+        .then(()=>{
+        fetchData()
         })
         .catch((error)=> setError(error.message))
     }
