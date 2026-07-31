@@ -129,7 +129,7 @@ export default function EditProductPanel({ open, product, onCancel, onUpdateProd
                     </Stack>
                 </DialogContent>
                 <DialogActions sx={{ p: 2 }}>
-                    <Button onClick={handleCancel} sx={{ color: 'var(--text-primary)', '&:hover': { bgcolor: 'var(--background)' } }}>
+                    <Button onClick={handleCancel} sx={{bgcolor: 'var(--card-surface)', color: 'var(--text-primary)', '&:hover': { bgcolor: 'var(--background)' } }}>
                         Cancel
                     </Button>
 
