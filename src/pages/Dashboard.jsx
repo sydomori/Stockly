@@ -24,6 +24,7 @@ export default function Dashboard() {
     const [view, setView] = useState('grid')
     const [products, setProducts] = useState([])
     const [error,setError] = useState('')
+    const [searchTerm, setSearchTerm] = useState('')
 
    function fetchData() {
       Promise.all([getProducts(), getCategories()])
@@ -72,11 +73,17 @@ export default function Dashboard() {
         .catch((error)=> setError(error.message))
     }
 
+    const filteredProducts = products.filter((p) =>
+        p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.category_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.sku?.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+
     return (
         <>
             <NavBar />
             <Container sx={{ mt: 1, pb: 2 }}>
-                <PageHeader isAddingProduct={isAddingProduct} onToggleAdd={() => setIsAddingProduct(!isAddingProduct)} filterOpen={open} setFilterOpen={setOpen} />
+                <PageHeader isAddingProduct={isAddingProduct} onToggleAdd={() => setIsAddingProduct(!isAddingProduct)} searchTerm={searchTerm} onSearchChange={setSearchTerm} />
                 <Collapse in={open}>
                     <Box sx={{ display: 'flex', gap: 2, mt: 2, p: 2, bgcolor: 'var(--primary-action)', borderRadius: 1, width: '300px' }}>
                         <Select size="small" defaultValue="all" sx={{ width: '200px' }}>
@@ -97,7 +104,7 @@ export default function Dashboard() {
                     <ToggleButton sx={{ color: 'var(--text-primary)' }} value='list'><ListIcon fontSize='small' /></ToggleButton>
                 </ToggleButtonGroup>
                 {error && <Box sx={{ color: 'error.main', mt: 2 }}>{error}</Box>}
-                {view === 'grid' ? <ProductList onEdit={handleEditProduct} onDelete={handleDeleteProduct} products={products.slice(0, 4)} /> : <ProductTable products={products.slice(0, 4)} onEdit={handleEditProduct} onDelete={handleDeleteProduct} />}
+                {view === 'grid' ? <ProductList onEdit={handleEditProduct} onDelete={handleDeleteProduct} products={filteredProducts.slice(0, 4)} /> : <ProductTable products={filteredProducts.slice(0, 4)} onEdit={handleEditProduct} onDelete={handleDeleteProduct} />}
             </Container>
         </>
     )
