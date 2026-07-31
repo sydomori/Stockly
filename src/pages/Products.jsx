@@ -22,7 +22,8 @@ export default function Products(){
     const [view, setView] = useState('grid')
     const [products, setProducts] = useState([])
     const [error,setError] = useState('')
-
+    const [searchTerm, setSearchTerm] = useState('')
+    
     function fetchData() {
     Promise.all([getProducts(), getCategories()])
         .then(([productsData, categoriesData]) => {
@@ -70,12 +71,20 @@ export default function Products(){
      .catch((error)=> setError(error.message))
    }
 
+   const filteredProducts = products.filter((p) =>
+        p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.category_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.sku?.toLowerCase().includes(searchTerm.toLowerCase())
+   )
+
     return (
         <Container>
             <NavBar />
             <PageHeader
                 isAddingProduct={isAddingProduct}
                 onToggleAdd={() => setIsAddingProduct(!isAddingProduct)}
+                searchTerm={searchTerm}
+                onSearchChange={setSearchTerm}
             />
             <AddProductPanel
                 open={isAddingProduct}
@@ -98,7 +107,7 @@ export default function Products(){
                         <ToggleButton sx={{ color: 'var(--text-primary)' }} value='list'><ListIcon fontSize='small' /></ToggleButton>
                     </ToggleButtonGroup>
                     {error && <Box sx={{ color: 'error.main', mt: 2 }}>{error}</Box>}
-                    {view === 'grid' ? <ProductList products={products} onEdit={handleEditProduct} onDelete={handleDeleteProduct} /> : <ProductTable products={products} onEdit={handleEditProduct} onDelete={handleDeleteProduct} />}
+                    {view === 'grid' ? <ProductList products={filteredProducts} onEdit={handleEditProduct} onDelete={handleDeleteProduct} /> : <ProductTable products={filteredProducts} onEdit={handleEditProduct} onDelete={handleDeleteProduct} />}
                 </Box>
             </Container>
         </Container>
