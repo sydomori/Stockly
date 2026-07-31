@@ -25,8 +25,8 @@ export default function ProductCard({product, onEdit, onDelete}){
                     height="200"
                     image={image_url}
                     alt={name}
-                    onClick={()=>{'/products/${product.id}'}}
-                    sx={{ objectFit: 'cover' }}
+                    onClick={()=>navigate(`/products/${product.id}`)}
+                    sx={{ objectFit: 'cover', cursor: 'pointer' }}
                 />
                 <Chip
                     label={badge.label}
@@ -39,7 +39,7 @@ export default function ProductCard({product, onEdit, onDelete}){
                 <Typography variant='caption' sx={{ color: 'var(--muted-text)', textTransform: 'uppercase', letterSpacing: 1, mb: 0.5, display: 'block' }}>
                     {category_name || 'Uncategorized'}
                 </Typography>
-                <Typography onclick={()=>{navigate(`/products/${product.id}`)}} variant='subtitle2' fontWeight="bold" sx={{ color: 'var(--text-primary)', mb: 0.5 }}>
+                <Typography onclick={()=>{navigate(`/products/${product.id}`)}} variant='subtitle2' fontWeight="bold" sx={{ color: 'var(--text-primary)', mb: 0.5 , cursor: 'pointer'}}>
                     {name}
                 </Typography>
                 <Typography variant='body2' fontWeight="bold" sx={{ color: 'var(--text-primary)', mb: 0.5 }}>
