@@ -117,7 +117,7 @@ export default function AdminUsers() {
                         <Box sx={{ p: 3 }}>
                             <DialogTitle sx={{ p: 0, mb: 2 }}>User Created</DialogTitle>
                             <Typography mb={2}>Share this temporary password with the new employee — it won't be shown again:</Typography>
-                            <Box sx={{ bgcolor: 'var(--background)', p: 2, borderRadius: 1, fontFamily: 'monospace', fontSize: '1.1rem', textAlign: 'center' }}>
+                            <Box sx={{ color: 'var(--primary-action)', bgcolor: 'var(--background)', p: 2, borderRadius: 1, fontFamily: 'monospace', fontSize: '1.1rem', textAlign: 'center' }}>
                                 {tempPassword}
                             </Box>
                             <DialogActions sx={{ mt: 2, p: 0 }}>
