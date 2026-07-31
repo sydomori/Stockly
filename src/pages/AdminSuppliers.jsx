@@ -17,6 +17,20 @@ import NavBar from '../components/layout/NavBar'
 import { getSuppliers, createSupplier, updateSupplier, deleteSupplier } from '../api/suppliers'
 
 export default function AdminSuppliers() {
+    const inputStyles = {
+        '& .MuiOutlinedInput-root': {
+            bgcolor: 'var(--background)',
+            borderRadius: 3,
+            '& fieldset': { borderColor: 'var(--border)' },
+            '&:hover fieldset': { borderColor: 'var(--border)' },
+            '&.Mui-focused fieldset': { borderColor: 'var(--primary-action)' },
+        },
+        '& .MuiInputLabel-root': { color: 'var(--muted-text)' },
+        '& .MuiInputLabel-root.Mui-focused': { color: 'var(--primary-action)' },
+        '& .MuiOutlinedInput-input': { color: 'var(--muted-text)' },
+    };
+
+
     const [suppliers, setSuppliers] = useState([])
     const [error, setError] = useState('')
     const [dialogOpen, setDialogOpen] = useState(false)
@@ -87,13 +101,13 @@ export default function AdminSuppliers() {
                         <DialogTitle>{editing ? 'Edit Supplier' : 'Add Supplier'}</DialogTitle>
                         <DialogContent>
                             <Stack spacing={2} mt={1}>
-                                <TextField label="Name" value={name} onChange={(e) => setName(e.target.value)} fullWidth size="small" required />
-                                <TextField label="Contact Email" value={contactEmail} onChange={(e) => setContactEmail(e.target.value)} fullWidth size="small" />
-                                <TextField label="Phone" value={phone} onChange={(e) => setPhone(e.target.value)} fullWidth size="small" />
+                                <TextField sx={inputStyles} label="Name" value={name} onChange={(e) => setName(e.target.value)} fullWidth size="small" required />
+                                <TextField sx={inputStyles} label="Contact Email" value={contactEmail} onChange={(e) => setContactEmail(e.target.value)} fullWidth size="small" />
+                                <TextField sx={inputStyles} label="Phone" value={phone} onChange={(e) => setPhone(e.target.value)} fullWidth size="small" />
                             </Stack>
                         </DialogContent>
                         <DialogActions sx={{ p: 2 }}>
-                            <Button onClick={() => setDialogOpen(false)} sx={{ color: 'var(--text-primary)' }}>Cancel</Button>
+                            <Button onClick={() => setDialogOpen(false)} sx={{ bgcolor: 'var(--card-surface)', color: 'var(--text-primary)' ,'&:hover': { bgcolor: 'var(--background)' }, '&:focus': { bgcolor: 'var(--card-surface)' }}}>Cancel</Button>
                             <Button type="submit" variant="contained" sx={{ bgcolor: 'var(--primary-action)', color: 'var(--background)' }}>
                                 {editing ? 'Save' : 'Add'}
                             </Button>
