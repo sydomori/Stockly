@@ -43,7 +43,7 @@ export default function ProductRow({product, onEdit, onDelete}){
                 <Button onClick={() => onEdit(product)} variant='outlined' color='inherit' size='small' sx={{ borderColor: 'var(--border)', color: 'var(--text-primary)' }} startIcon={<EditIcon />}>
                     Edit
                 </Button>
-                <IconButton onClick={() => onDelete(product)} sx={{ size: 'small', color: 'error.main' }}>
+                <IconButton onClick={() => onDelete(product.id)} sx={{ size: 'small', color: 'error.main' }}>
                     <DeleteIcon fontSize='small' />
                 </IconButton>
             </Box>

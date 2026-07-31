@@ -19,7 +19,7 @@ function App(){
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/set-password" element={<SetPassword />} />
+          <Route path="/reset-password" element={<SetPassword />} />
           <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/products" element={<ProtectedRoute><Products /></ProtectedRoute>} />
           <Route path="/products/:id" element={<ProtectedRoute><ProductDetail /></ProtectedRoute>} />
