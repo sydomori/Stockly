@@ -10,8 +10,10 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import '../../App.css';
 import { getStockStatus } from '../../helpers/stock';
+import { useNavigate} from 'react-router-dom';
 
-export default function ProductCard({product}){
+export default function ProductCard({product, onEdit, onDelete}){
+    const navigate = useNavigate()
     const {name, price, category_name, image_url, stock_quantity} = product
     const badge = getStockStatus(stock_quantity);
 
@@ -23,7 +25,8 @@ export default function ProductCard({product}){
                     height="200"
                     image={image_url}
                     alt={name}
-                    sx={{ objectFit: 'cover' }}
+                    onClick={()=>navigate(`/products/${product.id}`)}
+                    sx={{ objectFit: 'cover', cursor: 'pointer' }}
                 />
                 <Chip
                     label={badge.label}
@@ -36,7 +39,7 @@ export default function ProductCard({product}){
                 <Typography variant='caption' sx={{ color: 'var(--muted-text)', textTransform: 'uppercase', letterSpacing: 1, mb: 0.5, display: 'block' }}>
                     {category_name || 'Uncategorized'}
                 </Typography>
-                <Typography variant='subtitle2' fontWeight="bold" sx={{ color: 'var(--text-primary)', mb: 0.5 }}>
+                <Typography onclick={()=>{navigate(`/products/${product.id}`)}} variant='subtitle2' fontWeight="bold" sx={{ color: 'var(--text-primary)', mb: 0.5 , cursor: 'pointer'}}>
                     {name}
                 </Typography>
                 <Typography variant='body2' fontWeight="bold" sx={{ color: 'var(--text-primary)', mb: 0.5 }}>
@@ -49,11 +52,17 @@ export default function ProductCard({product}){
                     variant="outlined"
                     color="inherit"
                     fullWidth
+                    onClick={() => onEdit(product)}
                     sx={{ bgcolor: 'var(--primary-action)', mr: 1, borderColor: 'var(--border)', color: 'var(--background)' }}
                 >
                     Edit
                 </Button>
-                <IconButton size='small' sx={{ color: 'error.main' }}>
+                <IconButton 
+                 size='small' 
+                 sx={{ color: 'error.main' }}
+                 onClick={() => onDelete(product.id)}
+                
+                >
                     <DeleteIcon fontSize="small" />
                 </IconButton>
             </Box>

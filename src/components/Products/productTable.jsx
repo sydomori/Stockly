@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import ProductRow from './ProductRow';
 
-export default function ProductTable({products}){
+export default function ProductTable({products, onEdit, onDelete}){
     return(
         <Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, px: 2, py: 2, mb: 1, borderBottom: '1px solid var(--border)' }}>
@@ -13,7 +13,7 @@ export default function ProductTable({products}){
                 <Box sx={{ width: 120, flexShrink: 0 }} />
             </Box>
             {products.map((product) => (
-                <ProductRow key={product.id} product={product} />
+                <ProductRow key={product.id} product={product} onEdit={onEdit} onDelete={onDelete} />
             ))}
         </Box>
     )

@@ -11,16 +11,19 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import GridViewIcon from '@mui/icons-material/GridView'
 import ListIcon from '@mui/icons-material/List'
 import ProductTable from '../components/Products/productTable'
-import { getProducts, createProduct } from '../api/products'
+import { getProducts, createProduct, deleteProduct, updateProduct} from '../api/products'
 import {getCategories} from '../api/categories'
+import EditProductPanel from '../components/Products/EditProductPanel'
 
 
 export default function Products(){
     const [isAddingProduct, setIsAddingProduct] = useState(false)
+    const [editingProduct, setEditingProduct] = useState(null)
     const [view, setView] = useState('grid')
     const [products, setProducts] = useState([])
     const [error,setError] = useState('')
-
+    const [searchTerm, setSearchTerm] = useState('')
+    
     function fetchData() {
     Promise.all([getProducts(), getCategories()])
         .then(([productsData, categoriesData]) => {
@@ -46,6 +49,33 @@ export default function Products(){
             })
             .catch((error)=> setError(error.message))
     }
+    
+    function handleEditProduct(product){
+     setEditingProduct(product)
+    }
+
+    function handleUpdateProduct(id, productData){
+     updateProduct(id, productData)
+     .then(()=>{
+       fetchData()
+       setEditingProduct(null)
+     })
+     .catch((error)=>setError(error.message))
+   }
+
+   function handleDeleteProduct(id){
+     deleteProduct(id)
+     .then(()=>{
+       fetchData()
+     })
+     .catch((error)=> setError(error.message))
+   }
+
+   const filteredProducts = products.filter((p) =>
+        p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.category_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.sku?.toLowerCase().includes(searchTerm.toLowerCase())
+   )
 
     return (
         <Container>
@@ -53,11 +83,19 @@ export default function Products(){
             <PageHeader
                 isAddingProduct={isAddingProduct}
                 onToggleAdd={() => setIsAddingProduct(!isAddingProduct)}
+                searchTerm={searchTerm}
+                onSearchChange={setSearchTerm}
             />
             <AddProductPanel
                 open={isAddingProduct}
                 onCancel={() => setIsAddingProduct(false)}
                 onAddProduct={handleAddProduct}
+            />
+            <EditProductPanel
+              open={Boolean(editingProduct)}
+              product={editingProduct}
+              onCancel={()=>setEditingProduct(null)}
+              onUpdateProduct={handleUpdateProduct}
             />
             <Container disableGutters sx={{ mt: 10 }}>
                 <Box>
@@ -69,7 +107,7 @@ export default function Products(){
                         <ToggleButton sx={{ color: 'var(--text-primary)' }} value='list'><ListIcon fontSize='small' /></ToggleButton>
                     </ToggleButtonGroup>
                     {error && <Box sx={{ color: 'error.main', mt: 2 }}>{error}</Box>}
-                    {view === 'grid' ? <ProductList products={products} /> : <ProductTable products={products} />}
+                    {view === 'grid' ? <ProductList products={filteredProducts} onEdit={handleEditProduct} onDelete={handleDeleteProduct} /> : <ProductTable products={filteredProducts} onEdit={handleEditProduct} onDelete={handleDeleteProduct} />}
                 </Box>
             </Container>
         </Container>

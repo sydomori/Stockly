@@ -4,6 +4,10 @@ export function getProducts() {
     return request('/products');
 }
 
+export function getProduct(id) {
+    return request(`/products/${id}`);
+}
+
 export function createProduct(productData){
     return request (
         '/products',

@@ -13,15 +13,18 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import GridViewIcon from '@mui/icons-material/GridView'
 import ListIcon from '@mui/icons-material/List'
 import ProductTable from '../components/Products/productTable'
-import { getProducts, createProduct } from '../api/products'
+import { getProducts, createProduct, deleteProduct, updateProduct } from '../api/products'
 import {getCategories} from '../api/categories'
+import EditProductPanel from '../components/Products/EditProductPanel'
 
 export default function Dashboard() {
     const [open, setOpen] = useState(false)
     const [isAddingProduct, setIsAddingProduct] = useState(false)
+    const [editingProduct, setEditingProduct] = useState(null)
     const [view, setView] = useState('grid')
     const [products, setProducts] = useState([])
     const [error,setError] = useState('')
+    const [searchTerm, setSearchTerm] = useState('')
 
    function fetchData() {
       Promise.all([getProducts(), getCategories()])
@@ -49,11 +52,38 @@ export default function Dashboard() {
         .catch((error)=> setError(error.message))
     }
 
+    function handleEditProduct(product){
+         setEditingProduct(product)
+        }
+    
+    function handleUpdateProduct(id, productData){
+        updateProduct(id, productData)
+        .then(()=>{
+        fetchData()
+        setEditingProduct(null)
+        })
+        .catch((error)=>setError(error.message))
+    }
+
+    function handleDeleteProduct(id){
+        deleteProduct(id)
+        .then(()=>{
+        fetchData()
+        })
+        .catch((error)=> setError(error.message))
+    }
+
+    const filteredProducts = products.filter((p) =>
+        p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.category_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        p.sku?.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+
     return (
         <>
             <NavBar />
             <Container sx={{ mt: 1, pb: 2 }}>
-                <PageHeader isAddingProduct={isAddingProduct} onToggleAdd={() => setIsAddingProduct(!isAddingProduct)} filterOpen={open} setFilterOpen={setOpen} />
+                <PageHeader isAddingProduct={isAddingProduct} onToggleAdd={() => setIsAddingProduct(!isAddingProduct)} searchTerm={searchTerm} onSearchChange={setSearchTerm} />
                 <Collapse in={open}>
                     <Box sx={{ display: 'flex', gap: 2, mt: 2, p: 2, bgcolor: 'var(--primary-action)', borderRadius: 1, width: '300px' }}>
                         <Select size="small" defaultValue="all" sx={{ width: '200px' }}>
@@ -68,12 +98,13 @@ export default function Dashboard() {
                     </Box>
                 </Collapse>
                 <AddProductPanel open={isAddingProduct} onCancel={() => setIsAddingProduct(false)} onAddProduct={handleAddProduct} />
+                <EditProductPanel open={Boolean(editingProduct)} product={editingProduct} onCancel={()=>setEditingProduct(null)} onUpdateProduct={handleUpdateProduct} />
                 <ToggleButtonGroup sx={{ mt: 9, bgcolor: 'var(--card-surface)', borderRadius: 1 }} value={view} exclusive onChange={(e, newValue) => newValue && setView(newValue)} size="small">
                     <ToggleButton sx={{ color: 'var(--text-primary)' }} value='grid'><GridViewIcon fontSize='small' /></ToggleButton>
                     <ToggleButton sx={{ color: 'var(--text-primary)' }} value='list'><ListIcon fontSize='small' /></ToggleButton>
                 </ToggleButtonGroup>
                 {error && <Box sx={{ color: 'error.main', mt: 2 }}>{error}</Box>}
-                {view === 'grid' ? <ProductList products={products.slice(0, 4)} /> : <ProductTable products={products.slice(0, 4)} />}
+                {view === 'grid' ? <ProductList onEdit={handleEditProduct} onDelete={handleDeleteProduct} products={filteredProducts.slice(0, 4)} /> : <ProductTable products={filteredProducts.slice(0, 4)} onEdit={handleEditProduct} onDelete={handleDeleteProduct} />}
             </Container>
         </>
     )

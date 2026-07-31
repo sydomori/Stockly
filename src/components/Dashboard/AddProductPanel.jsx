@@ -119,7 +119,7 @@ export default function AddProductPanel({ open, onCancel, onAddProduct }) {
                     </Stack>
                 </DialogContent>
                 <DialogActions sx={{ p: 2 }}>
-                    <Button onClick={handleCancel} sx={{ color: 'var(--text-primary)', '&:hover': { bgcolor: 'var(--background)' } }}>Cancel</Button>
+                    <Button onClick={handleCancel} sx={{ bgcolor: 'var(--card-surface)',  color: 'var(--text-primary)', '&:hover': { bgcolor: 'var(--background)' } }}>Cancel</Button>
                     <Button type="submit" sx={{ bgcolor: 'var(--primary-action)', color: 'var(--background)' }} variant="contained">Add</Button>
                 </DialogActions>
             </Box>
