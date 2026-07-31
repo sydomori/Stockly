@@ -17,6 +17,19 @@ import NavBar from '../components/layout/NavBar'
 import { getCategories, createCategory, updateCategory, deleteCategory } from '../api/categories'
 
 export default function AdminCategories() {
+    const inputStyles = {
+        '& .MuiOutlinedInput-root': {
+            bgcolor: 'var(--background)',
+            borderRadius: 3,
+            '& fieldset': { borderColor: 'var(--border)' },
+            '&:hover fieldset': { borderColor: 'var(--border)' },
+            '&.Mui-focused fieldset': { borderColor: 'var(--primary-action)' },
+        },
+        '& .MuiInputLabel-root': { color: 'var(--muted-text)' },
+        '& .MuiInputLabel-root.Mui-focused': { color: 'var(--primary-action)' },
+        '& .MuiOutlinedInput-input': { color: 'var(--muted-text)' },
+    };
+
     const [categories, setCategories] = useState([])
     const [error, setError] = useState('')
     const [dialogOpen, setDialogOpen] = useState(false)
@@ -88,12 +101,12 @@ export default function AdminCategories() {
                         <DialogTitle>{editing ? 'Edit Category' : 'Add Category'}</DialogTitle>
                         <DialogContent>
                             <Stack spacing={2} mt={1}>
-                                <TextField label="Name" value={name} onChange={(e) => setName(e.target.value)} fullWidth size="small" required />
-                                <TextField label="Description" value={description} onChange={(e) => setDescription(e.target.value)} fullWidth size="small" multiline rows={3} />
+                                <TextField sx={inputStyles} label="Name" value={name} onChange={(e) => setName(e.target.value)} fullWidth size="small" required />
+                                <TextField sx={inputStyles} label="Description" value={description} onChange={(e) => setDescription(e.target.value)} fullWidth size="small" multiline rows={3} />
                             </Stack>
                         </DialogContent>
                         <DialogActions sx={{ p: 2 }}>
-                            <Button onClick={() => setDialogOpen(false)} sx={{ color: 'var(--text-primary)' }}>Cancel</Button>
+                            <Button onClick={() => setDialogOpen(false)} sx={{ bgcolor: 'var(--card-surface)', color: 'var(--text-primary)', '&:hover': { bgcolor: 'var(--background)' } }}>Cancel</Button>
                             <Button type="submit" variant="contained" sx={{ bgcolor: 'var(--primary-action)', color: 'var(--background)' }}>
                                 {editing ? 'Save' : 'Add'}
                             </Button>
